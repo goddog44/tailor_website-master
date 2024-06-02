@@ -2,16 +2,118 @@
 <html>
   <head>
     <title>Submit Measurements</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: #f3f3f3;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        color: #2980b9;
+        font-size: 36px;
+        font-weight: 600;
+        margin-bottom: 24px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .measurement-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 24px;
+      }
+
+      .measurement-group > div {
+        flex-basis: 48%;
+      }
+
+      textarea {
+        border: 2px solid #7f8c8d;
+        border-radius: 8px;
+        padding: 16px;
+        font-size: 18px;
+        font-family: 'Montserrat', sans-serif;
+        resize: vertical;
+        margin-bottom: 24px;
+        transition: border-color 0.3s ease;
+      }
+
+      textarea:focus {
+        outline: none;
+        border-color: #2980b9;
+      }
+
+      button {
+        background-color: #2980b9;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 14px 24px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #3498db;
+      }
+
+      @media (max-width: 767px) {
+        .container {
+          padding: 24px;
+        }
+
+        .measurement-group > div {
+          flex-basis: 100%;
+        }
+      }
+    </style>
   </head>
   <body>
-    <h2>Submit Measurements for {{ dress.name }}</h2>
-    <form method="post">
-      {% csrf_token %}
-      <textarea
-        name="measurements"
-        placeholder="Enter your measurements"
-      ></textarea>
-      <button type="submit">Submit</button>
-    </form>
+    <div class="container">
+      <h2>Submit Measurements for {{ dress.name }}</h2>
+      <form method="post">
+        {% csrf_token %}
+        <div class="measurement-group">
+          <div>
+            <label for="bust">Bust:</label>
+            <input type="number" id="bust" name="bust" required>
+          </div>
+          <div>
+            <label for="waist">Waist:</label>
+            <input type="number" id="waist" name="waist" required>
+          </div>
+          <div>
+            <label for="hips">Hips:</label>
+            <input type="number" id="hips" name="hips" required>
+          </div>
+          <div>
+            <label for="height">Height:</label>
+            <input type="number" id="height" name="height" required>
+          </div>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   </body>
 </html>

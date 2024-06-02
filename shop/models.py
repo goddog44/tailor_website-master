@@ -15,7 +15,10 @@ class Dress(models.Model):
     image = models.ImageField(upload_to='dresses/')
 
 class Measurement(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    dress = models.ForeignKey(Dress, on_delete=models.CASCADE)
-    measurements = models.JSONField()
+    bust = models.JSONField()
+    waist = models.JSONField(default=14)
+    height = models.JSONField(default=147)
+    hips = models.JSONField(default=32)
     submitted_at = models.DateTimeField(auto_now_add=True)
+    dress = models.ForeignKey(Dress, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
