@@ -16,9 +16,9 @@ class Dress(models.Model):
 
 class Measurement(models.Model):
     bust = models.JSONField()
-    waist = models.JSONField(default=14)
-    height = models.JSONField(default=147)
-    hips = models.JSONField(default=32)
+    waist = models.JSONField(default=dict)
+    height = models.JSONField(default=dict)
+    hips = models.JSONField(default=dict)
     submitted_at = models.DateTimeField(auto_now_add=True)
     dress = models.ForeignKey(Dress, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

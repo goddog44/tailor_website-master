@@ -28,9 +28,9 @@ def home(request):
 @login_required
 def submit_measurements(request, dress_id):
     if request.method == 'POST':
-        measurements = request.POST.get('measurements')
+        measurement = request.POST.get('measurements')
         dress = Dress.objects.get(id=dress_id)
-        Measurement.objects.create(user=request.user, dress=dress, measurements=measurements)
+        Measurement.objects.create(user=request.user, dress=dress, measurements=measurement)
         return redirect('home')
     dress = Dress.objects.get(id=dress_id)
     return render(request, 'submit_measurements.html', {'dress': dress})

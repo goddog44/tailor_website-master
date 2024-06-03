@@ -5,6 +5,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta charset="UTF-8">
+    {% load static %}
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'stylead.css' %}">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The King's Suitup</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
       body {
@@ -75,9 +84,7 @@
         transition: background-color 0.3s ease;
       }
 
-      button:hover {
-        background-color: #3498db;
-      }
+      
 
       @media (max-width: 767px) {
         .container {
@@ -91,8 +98,29 @@
     </style>
   </head>
   <body>
-    <div class="container">
-      <h2>Submit Measurements for {{ dress.name }}</h2>
+    <nav style="background-color: deeppink; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);" >
+      <ul>
+          <li class="title"><a href="#">The King's Suitup</a></li>
+          <li class="search-container">
+              <input type="text" placeholder="Search...">
+              <button type="submit"><i class="fas fa-search"></i></button>
+          </li>
+          <li><a class="fas fa-globe" href="#"></a></li>
+          <li><a class="fas fa-envelope" href="#"></a></li>
+          <li><a class="fas fa-bell" href="#"></a></li>
+          <li class="username">Hello, &nbsp;&nbsp;<span class="log log1">{{ user.username }}</span></li>
+          <a href="{% url 'profile' %}" class="profile" >
+              <!--<img src="{{ dress.image.url }}">-->
+          </a>
+          <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="logout-btn"><i class="fas fa-sign-out-alt"></i></button>
+          </form>          
+      </ul>
+  </nav>                      
+    <div class="container" style="margin-top: 17%;">
+      <a href="{% url 'home' %}"><button class="fas fa-sign-out-alt" style="background-color: deeppink;">Home</button></a>
+      <h2 style="color: black;">Submit Measurements for {{ dress.name }}</h2>
       <form method="post">
         {% csrf_token %}
         <div class="measurement-group">
@@ -113,7 +141,7 @@
             <input type="number" id="height" name="height" required>
           </div>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" style="background-color: deeppink;">Submit</button>
       </form>
     </div>
   </body>
