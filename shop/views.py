@@ -25,12 +25,24 @@ def home(request):
     dresses = Dress.objects.all()
     return render(request, 'home.html', {'dresses': dresses})
 
+
 @login_required
 def submit_measurements(request, dress_id):
     if request.method == 'POST':
-        measurement = request.POST.get('measurements')
+        bust = request.POST.get('bust')
+        waist = request.POST.get('waist')
+        height = request.POST.get('height')
+        hips = request.POST.get('hips')
         dress = Dress.objects.get(id=dress_id)
-        Measurement.objects.create(user=request.user, dress=dress, measurements=measurement)
+
+        measurements = {
+
+            'bust':bust,
+            'waist':waist,
+            'height': height,
+            'hips': hips
+        }
+
         return redirect('home')
     dress = Dress.objects.get(id=dress_id)
     return render(request, 'submit_measurements.html', {'dress': dress})
