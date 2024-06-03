@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta charset="UTF-8">
+    {% load static %}
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'stylead.css' %}">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The King's Suitup</title>
+</head>
+<body>
+    <nav style="background-color: deeppink; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);" >
+        <ul>
+            <li class="title"><a href="#">The King's Suitup</a></li>
+            <li class="search-container">
+                <input type="text" placeholder="Search...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </li>
+            <li><a class="fas fa-globe" href="#"></a></li>
+            <li><a class="fas fa-envelope" href="#"></a></li>
+            <li><a class="fas fa-bell" href="#"></a></li>
+            <li class="username">Hello, &nbsp;&nbsp;<span class="log log1">{{ user.username }}</span></li>
+            <a href="{% url 'profile' %}" class="profile" >
+                <img src="{{ dress.image.url }}">
+            </a>
+            <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="logout-btn"><i class="fas fa-sign-out-alt"></i></button>
+            </form>          
+        </ul>
+    </nav>
+    <div class="content">
+    <div id="content" style="position: absolute; width: calc(100% - 280px); left: 8%;">
+        <!--  MAIN -->
+        <main  style="margin-left: auto;">
+            <div class="head-title">
+                <div class="left">
+                    <h1>{{ user.username }}'s Profile</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a class="active" href="{% url 'home' %}">Home</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="table-data">
+                <div class="order">
+                    <div class="head">
+                        <h3> Recent Orders </h3>
+                        <i class="bx bx-search"></i>
+                        <i class="bx bx-filter"></i>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>DRESS NAME</th>
+                                <th>PRICE</th>
+                                <th>ORDER DATE</th>
+                                <th>TAILOR'S LOCATION</th>
+                                <th>DRESS STATUS</th>
+                                <th style="vertical-align:middle" colspan="1"><b>Action</b></th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>{{ dress.name }}</td>
+                                <td>{{ dress.price }}</td>
+                                <td>01-10-2021</td>
+                                <td>Yaoundé</td>
+                                <td><span class="status completed">Completed</span></td>
+                                <td><a href="#" class="status process">edit</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    </div>
+
+</body>
+</html>
