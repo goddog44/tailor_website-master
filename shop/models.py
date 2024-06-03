@@ -22,3 +22,10 @@ class Measurement(models.Model):
     submitted_at = models.DateTimeField(auto_now_add=True)
     dress = models.ForeignKey(Dress, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+class database(models.Model):
+    backup = models.CharField(default=0, max_length=100)
+    restore = models.CharField(default=0, max_length=100)
+
+
+
