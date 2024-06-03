@@ -10,7 +10,7 @@
     <title>The King's Suitup</title>
 </head>
 <body>
-    <nav>
+    <nav style="background-color: deeppink; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);" >
         <ul>
             <li class="title"><a href="#">The King's Suitup</a></li>
             <li class="search-container">
@@ -20,7 +20,8 @@
             <li><a class="fas fa-globe" href="#"></a></li>
             <li><a class="fas fa-envelope" href="#"></a></li>
             <li><a class="fas fa-bell" href="#"></a></li>
-            <li class="username">Hello, <span class="log log1">{{ user.name }}</span></li>
+            <li class="username">Hello, &nbsp;&nbsp;<span class="log log1">{{ user.username }}</span></li>
+            <a href="{% url 'profile' %}" class="profile" style="color: darkred;">profile</a>
             <form action="{% url 'logout' %}" method="post">
               {% csrf_token %}
               <button type="submit" class="logout-btn"><i class="fas fa-sign-out-alt"></i></button>
@@ -43,7 +44,7 @@
         </div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer" style="background-color: deeppink; box-shadow: 10px 5px 0 rgba(0, 0, 0.7, 0.0);">
         <div class="container">
             <div class="row">
                 <div class="footer-col">
